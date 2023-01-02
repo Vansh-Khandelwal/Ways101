@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Beau+Rivage&family=Inter:wght@400;600;700&family=La+Belle+Aurore&family=Mr+Dafoe&family=Parisienne&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer"
+    />
+</head>
+
+<body>
+
+    <!-- Navbar -->
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 10vh;">
+
+        <div class="w-100 d-flex flex-fill justify-content-between align-items-center ps-2 ps-sm-4 me-3 me-sm-4 pe-sm-3">
+
+            <!-- <div class="navbar-brand"> -->
+            <!-- Ways 101 -->
+            <!-- {% load static %} <img src="{% static "/App/media/logoway.png" %}" alt="Ways 101"> -->
+
+            <div class="w-25">
+                <!-- For Large screen width -->
+                <img src="{% static '/logoway.png' %}" alt="Ways 101" style="color: white;" class="w-25 d-none d-lg-block">
+                <!-- For Medium screen width -->
+                <img src="{% static '/logoway.png' %}" alt="Ways 101" style="color: white;" class="w-50 d-none d-md-block d-lg-none">
+                <!-- For Small screen width -->
+                <img src="{% static '/logoway.png' %}" alt="Ways 101" style="color: white;" class="w-75 d-none d-sm-block d-md-none d-lg-none">
+                <!-- For Extra small screen width -->
+                <img src="{% static '/logoway.png' %}" alt="Ways 101" style="color: white;" class="w-100 d-sm-none">
+            </div>
+
+            <!-- For Extra small screen width -->
+            <div class="d-block d-sm-none text-light w-25 fw-bold" style="font-size: 1.2rem;">Ways 101</div>
+
+            <!-- For Other screen widths -->
+            <div class="d-none d-sm-block text-light w-25 fw-bold" style="font-size: 1.5rem;">Ways 101</div>
+
+            <div class="dropdown w-auto">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fa-solid fa-gear me-2"></i>Settings
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li class="text-dark">
+                        <button class="dropdown-item" onclick="location.href='/login/profile/{{user}}'"><i class="fa-solid fa-user text-dark pe-2"></i>Profile</button>
+                    </li>
+                    <li class="text-dark">
+                        <button class="dropdown-item" onclick="location.href='/login/{{user}}'"><i class="fa-sharp fa-solid fa-house text-dark pe-2"></i>Home</button>
+                    </li>
+                    <li class="text-dark">
+                        <button class="dropdown-item" onclick="location.href='/logout/'"><i class="fa-sharp fa-solid fa-arrow-right-from-bracket text-dark pe-2" style="color: white;"></i>Log out</button>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </nav>
+
+    <!-- Profile -->
+
+    <div class="w-100 d-flex align-items-center justify-content-center" style="margin-top: 7% ;">
+
+        <div class="w-75 d-flex flex-column flex-md-row justify-content-center align-items-center shadow bg-dark text-light p-5" style="border-radius: 15px;">
+
+            <!-- For Above 768px screen width -->
+            <div class="w-25 d-none d-md-flex flex-column justify-content-center align-items-center me-5">
+                {% if user.profileImg == 1 %}
+                <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% elif user.profileImg == 2 %}
+                <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% elif user.profileImg == 3 %}
+                <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% elif user.profileImg == 4 %}
+                <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% elif user.profileImg == 5 %}
+                <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% else %}
+                <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% endif %}
+
+                <h1 class="mt-4" style="font-family: 'serif';">{{user}}</h1>
+            </div>
+
+            <div class="w-50 d-none d-md-flex flex-column justify-content-start align-items-center ms-5 border-3 border-start border-warning ps-5">
+
+                <h1 class="mb-3 w-100" style="font-size:4rem; font-family:'Parisienne';">Profile</h1>
+
+                <div class="d-flex flex-column w-100">
+
+                    <div class="mb-4 w-100">
+                        <input type="text" class="form-control border-0" id="username" value="{{user}}" disabled="True" />
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="password" class="form-control border-0" id="password" disabled="True" value="{{user.password}}" /> {% if correctpassword is False %}
+                        <div class="text-danger mt-0 mb-2">Password is incorrect</div>
+                        {% elif samepassword is False %}
+                        <div class="text-danger mt-0 mb-2">Password does not match</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="text" class="form-control border-0" id="firstname" value="{{user.first_name}}" disabled="True" />
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="text" class="form-control border-0" id="lastname" value="{{user.last_name}}" disabled="True" />
+                    </div>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Edit <i class="fa-solid fa-pen ms-2"></i>
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <form class="d-flex flex-column justify-content-around" method="POST">
+
+                                        {% csrf_token %}
+                                        <div class="mb-4 w-100">
+                                            <input type="text" class="form-control" id="username" name="username" value="{{user}}" readonly/>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="password" class="form-control" id="password1" placeholder="Old password" name="password1" />
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="password" class="form-control" id="password2" placeholder="New password" name="password2" />
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="password" class="form-control" id="password3" placeholder="Confirm new password" name="password3" />
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control" id="firstname" value="{{user.first_name}}" placeholder="First Name" name="firstname" />
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control" id="lastname" value="{{user.last_name}}" placeholder="Last Name" name="lastname" />
+                                        </div>
+
+                                        <!-- Profile image choices -->
+                                        <div class="w-100 d-flex justify-content-evenly align-items-center mb-4">
+
+                                            <div class="d-flex w-50 justify-content-evenly align-items-center">
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset1.png' %}" alt="Profile Image 1" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile1" value="1" {% if user.profileImg is 1 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset2.png' %}" alt="Profile Image 2" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile2" value="2" {% if user.profileImg is 2 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset3.png' %}" alt="Profile Image 3" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile3" value="3" {% if user.profileImg is 3 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset4.png' %}" alt="Profile Image 4" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile4" value="4" {% if user.profileImg is 4 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset5.png' %}" alt="Profile Image 5" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile5" value="5" {% if user.profileImg is 5 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset6.png' %}" alt="Profile Image 6" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile6" value="6" {% if user.profileImg is 6 %} checked {% endif %}/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Button trigger modal -->
+                                        <button type="submit" class="btn btn-primary mb-4">
+                                            Submit
+                                        </button>
+
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- For Below 768px screen width -->
+            <div class="w-100 d-flex d-md-none flex-column justify-content-center align-items-center mb-4">
+                {% if user.profileImg == 1 %}
+                <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% elif user.profileImg == 2 %}
+                <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% elif user.profileImg == 3 %}
+                <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% elif user.profileImg == 4 %}
+                <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% elif user.profileImg == 5 %}
+                <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% else %}
+                <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="border border-2 border-warning rounded-circle w-75"> {% endif %}
+
+                <h1 class="mt-4" style="font-family: 'serif';">{{user.username}}</h1>
+            </div>
+
+            <div class="w-100 d-flex d-md-none flex-column justify-content-start align-items-center border-3 border-top border-warning pt-4">
+
+                <h1 class="mb-3 w-100 text-center" style="font-size:4rem; font-family:'Parisienne';">Profile</h1>
+
+                <div class="d-flex flex-column w-100">
+
+                    <div class="mb-4 w-100">
+                        <input type="text" class="form-control border-0" id="username" value="{{user}}" disabled="True" />
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="password" class="form-control border-0" id="password" disabled="True" value="{{user.password}}" /> {% if correctpassword is False %}
+                        <div class="text-danger mt-0 mb-2">Password is incorrect</div>
+                        {% elif samepassword is False %}
+                        <div class="text-danger mt-0 mb-2">Password does not match</div>
+                        {% endif %}
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="text" class="form-control border-0" id="firstname" value="{{user.first_name}}" disabled="True" />
+                    </div>
+
+                    <div class="mb-4">
+                        <input type="text" class="form-control border-0" id="lastname" value="{{user.last_name}}" disabled="True" />
+                    </div>
+
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                        Edit
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+
+                                <div class="modal-body">
+
+                                    <form class="d-flex flex-column justify-content-around" method="POST">
+
+                                        {% csrf_token %}
+                                        <div class="mb-4 w-100">
+                                            <input type="text" class="form-control" id="username" name="username" value="{{user}}" readonly/>
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="password" class="form-control" id="password1" placeholder="Old password" name="password1" />
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="password" class="form-control" id="password2" placeholder="New password" name="password2" />
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="password" class="form-control" id="password3" placeholder="Confirm new password" name="password3" />
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control" id="firstname" value="{{user.first_name}}" placeholder="First Name" name="firstname" />
+                                        </div>
+
+                                        <div class="mb-4">
+                                            <input type="text" class="form-control" id="lastname" value="{{user.last_name}}" placeholder="Last Name" name="lastname" />
+                                        </div>
+
+                                        <!-- Profile image choices -->
+                                        <div class="w-100 d-flex justify-content-evenly align-items-center mb-4">
+
+                                            <div class="d-flex w-50 justify-content-evenly align-items-center">
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset1.png' %}" alt="Profile Image 1" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile1" value="1" {% if user.profileImg is 1 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset2.png' %}" alt="Profile Image 2" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile2" value="2" {% if user.profileImg is 2 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset3.png' %}" alt="Profile Image 3" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile3" value="3" {% if user.profileImg is 3 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset4.png' %}" alt="Profile Image 4" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile4" value="4" {% if user.profileImg is 4 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset5.png' %}" alt="Profile Image 5" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile5" value="5" {% if user.profileImg is 5 %} checked {% endif %} />
+                                                </div>
+                                                <div class="d-flex flex-column w-25 me-2">
+                                                    <img src="{% static '/1x/Asset6.png' %}" alt="Profile Image 6" class="mb-2">
+                                                    <input type="radio" name="profileImg" id="profile6" value="6" {% if user.profileImg is 6 %} checked {% endif %}/>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <!-- Button trigger modal -->
+                                        <button type="submit" class="btn btn-primary mb-4">
+                                            Submit
+                                        </button>
+
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                                            Close
+                                        </button>
+
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Ways Accordian -->
+
+    <div style="margin: 5%;">
+
+        <h1 class="mb-5 text-center" style="font-size:4rem; font-family:'Parisienne'; margin-top: 9%;"><u>Your Activity</u></h1>
+
+        <!-- Accordian -->
+
+        <div class="accordion" id="accordionExample">
+
+            <!-- Liked Ways -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                        Liked
+                    </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body p-0 p-sm-2">
+
+                        <!-- ways -->
+                        <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                            <ul class="w-100 d-flex flex-column justify-content-center list-group">
+                                {% for way in waysList %} {% if user.username in way.up %}
+                                <li class="w-100 list-group-item border-0 d-flex">
+
+                                    <div class="w-auto d-flex justify-content-start align-items-center me-2">
+                                        <button class="btn btn-dark rounded-circle text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#Comment{{way.id}}" aria-expanded="false" aria-controls="Comment{{way.id}}"><i class="text-start fa-solid fa-comment fa-2x"></i></button>
+                                    </div>
+
+                                    <div class="w-100 d-flex flex-column align-items-center justify-content-evenly border border-2 p-3" style="border-radius: 50px;">
+                                        <div class="fw-bold text-break text-wrap pb-2">{{way.content}}</div>
+                                        <div class="fst-italic">By: {{way.author}}</div>
+                                    </div>
+
+                                    <div class="w-auto d-flex justify-content-end align-items-center">
+                                        <div class="ms-2">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-solid fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/unupvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofupvotes}} upvotes  </span>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-down fa-2x me-1" onclick="location.href = '/login/downvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofdownvotes}} downvotes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+
+                                <!-- Comments -->
+                                <div class="collapse" id="Comment{{way.id}}">
+
+                                    <div class="w-100 d-flex justify-content-center align-items-center">
+
+                                        <div class="w-75 d-flex flex-column justify-content-center p-2">
+
+                                            <button class="btn btn-dark rounded-pill text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#CommentForm{{way.id}}" aria-expanded="false" aria-controls="CommentForm{{way.id}}"><i class="fa-solid fa-square-plus"></i></button>
+
+                                            <div class="collapse m-2" id="CommentForm{{way.id}}">
+
+                                                <form class="d-flex flex-column justify-content-around text-center mt-1" action="../comment/{{user}}/{{way.id}}" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="mb-1">
+                                                        <textarea cols="10" rows="5" type="text" class="form-control" id="comment" placeholder="Your Comment" name="comment" required="True"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-dark">Add comment</button>
+                                                </form>
+
+                                            </div>
+
+                                            <!-- Other commments -->
+
+                                            <div class="bg-light p-3 mt-2 d-flex flex-column align-items-center justify-content-evenly" style="border-radius: 25px;">
+                                                {% for comment in comments %} {% if way == comment.way %}
+                                                <div class="w-100 d-flex ps-4 pe-4 pt-3 pb-3 m-2 shadow" style="border-radius: 15px; border: 2px solid black;">
+
+                                                    <!-- For Extra small screen width -->
+                                                    <div class="d-flex d-sm-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 40%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Small screen width -->
+                                                    <div class="d-none d-sm-flex d-md-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 20%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Other screen width -->
+                                                    <div class="d-none d-md-flex flex-column align-items-start" id="profile{{comment.id}}" style="width: 10%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- Same for all screen widths -->
+                                                    <div class="w-auto d-flex flex-column align-items-center justify-content-start" id="comment{{comment.id}}">
+                                                        <div class="fw-bold border-bottom border-2 border-warning">{{comment.author}}</div>
+                                                        <div class="text-break text-wrap">{{comment.comment}}</div>
+                                                    </div>
+
+                                                </div>
+                                                {% endif %} {% endfor %}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                {% endif %} {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Disliked Ways -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                        Disliked
+                    </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                    <div class="accordion-body p-0 p-sm-2">
+
+                        <!-- ways -->
+                        <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                            <ul class="w-100 d-flex flex-column justify-content-center list-group">
+                                {% for way in waysList %} {% if user.username in way.down %}
+                                <li class="w-100 list-group-item border-0 d-flex">
+
+                                    <div class="w-auto d-flex justify-content-start align-items-center me-2">
+                                        <button class="btn btn-dark rounded-circle text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#Comment{{way.id}}" aria-expanded="false" aria-controls="Comment{{way.id}}"><i class="text-start fa-solid fa-comment fa-2x"></i></button>
+                                    </div>
+
+                                    <div class="w-100 d-flex flex-column align-items-center justify-content-evenly border border-2 p-3" style="border-radius: 50px;">
+                                        <div class="fw-bold text-break text-wrap pb-2">{{way.content}}</div>
+                                        <div class="fst-italic">By: {{way.author}}</div>
+                                    </div>
+
+                                    <div class="w-auto d-flex justify-content-end align-items-center">
+                                        <div class="ms-2">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/upvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center" style="font-size: 0.8rem;">{{way.numberofupvotes}} upvotes</span>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-solid fa-thumbs-down fa-2x me-1" onclick="location.href = '/login/undownvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofdownvotes}} downvotes</span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </li>
+
+                                <!-- Comments -->
+                                <div class="collapse" id="Comment{{way.id}}">
+
+                                    <div class="w-100 d-flex justify-content-center align-items-center">
+
+                                        <div class="w-75 d-flex flex-column justify-content-center p-2">
+
+                                            <button class="btn btn-dark rounded-pill text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#CommentForm{{way.id}}" aria-expanded="false" aria-controls="CommentForm{{way.id}}"><i class="fa-solid fa-square-plus"></i></button>
+
+                                            <div class="collapse m-2" id="CommentForm{{way.id}}">
+
+                                                <form class="d-flex flex-column justify-content-around text-center mt-1" action="../comment/{{user}}/{{way.id}}" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="mb-1">
+                                                        <textarea cols="10" rows="5" type="text" class="form-control" id="comment" placeholder="Your Comment" name="comment" required="True"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-dark">Add comment</button>
+                                                </form>
+
+                                            </div>
+
+                                            <!-- Other commments -->
+
+                                            <div class="bg-light p-3 mt-2 d-flex flex-column align-items-center justify-content-evenly" style="border-radius: 25px;">
+                                                {% for comment in comments %} {% if way == comment.way %}
+                                                <div class="w-100 d-flex ps-4 pe-4 pt-3 pb-3 m-2 shadow" style="border-radius: 15px; border: 2px solid black;">
+
+                                                    <!-- For Extra small screen width -->
+                                                    <div class="d-flex d-sm-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 40%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Small screen width -->
+                                                    <div class="d-none d-sm-flex d-md-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 20%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Other screen width -->
+                                                    <div class="d-none d-md-flex flex-column align-items-start" id="profile{{comment.id}}" style="width: 10%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- Same for all screen widths -->
+                                                    <div class="w-auto d-flex flex-column align-items-center justify-content-start" id="comment{{comment.id}}">
+                                                        <div class="fw-bold border-bottom border-2 border-warning">{{comment.author}}</div>
+                                                        <div class="text-break text-wrap">{{comment.comment}}</div>
+                                                    </div>
+
+                                                </div>
+                                                {% endif %} {% endfor %}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                {% endif %} {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Comments -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                        Comments
+                    </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                    <div class="accordion-body p-0 p-sm-2">
+
+                        <!-- ways -->
+                        <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                            <ul class="w-100 d-flex flex-column justify-content-center list-group">
+
+                                {% for comment in comments %} {% if user == comment.author %}
+
+                                <li class="w-100 list-group-item border-0 d-flex">
+
+                                    <div class="w-auto d-flex justify-content-start align-items-center me-2">
+                                        <button class="btn btn-dark rounded-circle text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#Comment{{comment.way.id}}" aria-expanded="false" aria-controls="Comment{{comment.way.id}}"><i class="text-start fa-solid fa-comment fa-2x"></i></button>
+                                    </div>
+
+                                    <div class="w-100 d-flex flex-column align-items-center justify-content-evenly border border-2 p-3" style="border-radius: 50px;">
+                                        <div class="fw-bold text-break text-wrap pb-2">{{comment.way.content}}</div>
+                                        <div class="fst-italic">By: {{comment.way.author}}</div>
+                                    </div>
+
+                                    <div class="w-auto d-flex justify-content-end align-items-center ms-2">
+
+                                        {% if user.username in comment.way.up %}
+                                        <div class="ms-2">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-solid fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/unupvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{comment.way.numberofupvotes}} upvotes  </span>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-down fa-2x me-1" onclick="location.href = '/login/downvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{comment.way.numberofdownvotes}} downvotes</span>
+                                            </div>
+                                        </div>
+                                        {% elif user.username in comment.way.down %}
+                                        <div class="ms-2">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/upvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center" style="font-size: 0.8rem;">{{comment.way.numberofupvotes}} upvotes</span>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-solid fa-thumbs-down fa-2x me-1" onclick="location.href = '/login/undownvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{comment.way.numberofdownvotes}} downvotes</span>
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                        <div class="ms-2">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/upvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{comment.way.numberofupvotes}} upvotes</span>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-down fa-2x me-1" onclick="location.href = '/login/downvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{comment.way.numberofdownvotes}} downvotes</span>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+
+                                    </div>
+
+                                </li>
+
+                                <!-- Comments -->
+                                <div class="collapse" id="Comment{{comment.way.id}}">
+
+                                    <div class="w-100 d-flex justify-content-center align-items-center">
+
+                                        <div class="w-75 d-flex flex-column justify-content-center p-2">
+
+                                            <button class="btn btn-dark rounded-pill text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#CommentForm{{comment.way.id}}" aria-expanded="false" aria-controls="CommentForm{{comment.way.id}}"><i class="fa-solid fa-square-plus"></i></button>
+
+                                            <div class="collapse m-2" id="CommentForm{{comment.way.id}}">
+
+                                                <form class="d-flex flex-column justify-content-around text-center mt-1" action="../comment/{{user}}/{{comment.way.id}}" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="mb-1">
+                                                        <textarea cols="10" rows="5" type="text" class="form-control" id="comment" placeholder="Your Comment" name="comment" required="True"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-dark">Add comment</button>
+                                                </form>
+
+                                            </div>
+
+                                            <!-- Other commments -->
+
+                                            <div class="bg-light p-3 mt-2 d-flex flex-column align-items-center justify-content-evenly" style="border-radius: 25px;">
+                                                {% for comment1 in comments %} {% if comment1.way == comment.way %}
+                                                <div class="w-100 d-flex ps-4 pe-4 pt-3 pb-3 m-2 shadow" style="border-radius: 15px; border: 2px solid black;">
+
+                                                    <!-- For Extra small screen width -->
+                                                    <div class="d-flex d-sm-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 40%;">
+
+                                                        {% if comment1.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Small screen width -->
+                                                    <div class="d-none d-sm-flex d-md-none flex-column align-items-start" id="profile{{comment1.id}}" style="width: 20%;">
+
+                                                        {% if comment1.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Other screen width -->
+                                                    <div class="d-none d-md-flex flex-column align-items-start" id="profile{{comment1.id}}" style="width: 10%;">
+
+                                                        {% if comment1.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment1.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- Same for all screen widths -->
+                                                    <div class="w-auto d-flex flex-column align-items-center justify-content-start" id="comment{{comment.id}}">
+                                                        <div class="fw-bold border-bottom border-2 border-warning">{{comment1.author}}</div>
+                                                        <div class="text-break text-wrap">{{comment1.comment}}</div>
+                                                    </div>
+
+                                                </div>
+                                                {% endif %} {% endfor %}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                {% endif %} {% endfor %}
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- User Ways -->
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                    <button class="accordion-button collapsed bg-dark text-light" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                        Your Ways
+                    </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                    <div class="accordion-body p-0 p-sm-2">
+
+                        <!-- ways -->
+                        <div class="w-100 d-flex flex-column justify-content-center align-items-center">
+                            <ul class="w-100 d-flex flex-column justify-content-center list-group">
+                                {% for way in waysList %} {% if user == way.author %}
+                                <li class="w-100 list-group-item border-0 d-flex">
+
+                                    <div class="w-auto d-flex justify-content-start align-items-center me-2">
+                                        <button class="btn btn-dark rounded-circle text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#Comment{{way.id}}" aria-expanded="false" aria-controls="Comment{{way.id}}"><i class="text-start fa-solid fa-comment fa-2x"></i></button>
+                                    </div>
+
+                                    <div class="w-100 d-flex flex-column align-items-center justify-content-evenly border border-2 p-3" style="border-radius: 50px;">
+                                        <div class="fw-bold text-break text-wrap pb-2">{{way.content}}</div>
+                                        <div class="fst-italic">By: {{way.author}}</div>
+                                    </div>
+
+                                    <div class="w-auto d-flex justify-content-end align-items-center ms-2">
+
+                                        {% if user.username in way.up %}
+                                        <div class="ms-2">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-solid fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/unupvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofupvotes}} upvotes  </span>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-down fa-2x me-1" onclick="location.href = '/login/downvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofdownvotes}} downvotes</span>
+                                            </div>
+                                        </div>
+                                        {% elif user.username in way.down %}
+                                        <div class="ms-2">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/upvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center" style="font-size: 0.8rem;">{{way.numberofupvotes}} upvotes</span>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-solid fa-thumbs-down fa-2x me-1" onclick="location.href = '/login/undownvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofdownvotes}} downvotes</span>
+                                            </div>
+                                        </div>
+                                        {% else %}
+                                        <div class="ms-2">
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/upvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofupvotes}} upvotes</span>
+                                            </div>
+                                            <div class="d-flex flex-column flex-sm-row align-items-center">
+                                                <i class="text-end fa-regular fa-thumbs-down fa-2x me-1" onclick="location.href = '/login/downvote/{{user}}/{{way.id}}'"></i>
+                                                <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofdownvotes}} downvotes</span>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    </div>
+
+                                </li>
+
+                                <!-- Comments -->
+                                <div class="collapse" id="Comment{{way.id}}">
+
+                                    <div class="w-100 d-flex justify-content-center align-items-center">
+
+                                        <div class="w-75 d-flex flex-column justify-content-center p-2">
+
+                                            <button class="btn btn-dark rounded-pill text-warning" type="button" data-bs-toggle="collapse" data-bs-target="#CommentForm{{way.id}}" aria-expanded="false" aria-controls="CommentForm{{way.id}}"><i class="fa-solid fa-square-plus"></i></button>
+
+                                            <div class="collapse m-2" id="CommentForm{{way.id}}">
+
+                                                <form class="d-flex flex-column justify-content-around text-center mt-1" action="../comment/{{user}}/{{way.id}}" method="POST">
+                                                    {% csrf_token %}
+                                                    <div class="mb-1">
+                                                        <textarea cols="10" rows="5" type="text" class="form-control" id="comment" placeholder="Your Comment" name="comment" required="True"></textarea>
+                                                    </div>
+                                                    <button type="submit" class="btn btn-dark">Add comment</button>
+                                                </form>
+
+                                            </div>
+
+                                            <!-- Other commments -->
+
+                                            <div class="bg-light p-3 mt-2 d-flex flex-column align-items-center justify-content-evenly" style="border-radius: 25px;">
+                                                {% for comment in comments %} {% if way == comment.way %}
+                                                <div class="w-100 d-flex ps-4 pe-4 pt-3 pb-3 m-2 shadow" style="border-radius: 15px; border: 2px solid black;">
+
+                                                    <!-- For Extra small screen width -->
+                                                    <div class="d-flex d-sm-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 40%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Small screen width -->
+                                                    <div class="d-none d-sm-flex d-md-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 20%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Other screen width -->
+                                                    <div class="d-none d-md-flex flex-column align-items-start" id="profile{{comment.id}}" style="width: 10%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- Same for all screen widths -->
+                                                    <div class="w-auto d-flex flex-column align-items-center justify-content-start" id="comment{{comment.id}}">
+                                                        <div class="fw-bold border-bottom border-2 border-warning">{{comment.author}}</div>
+                                                        <div class="text-break text-wrap">{{comment.comment}}</div>
+                                                    </div>
+
+                                                </div>
+                                                {% endif %} {% endfor %}
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                                {% endif %} {% endfor %}
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+
+    <div class="bg-dark mt-5 d-flex align-items-center justify-content-around " style="height: 200px; color: white; ">
+        <div class="w-50 border-end border-warning text-center p-3 ">Footer</div>
+        <div class="w-50 text-center p-3 ">Credits: @ AtomicFrost1370 and Entrance Leader</div>
+    </div>
+
+    <!-- Scripts for boostrap -->
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js " integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM " crossorigin="anonymous "></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js " integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p " crossorigin="anonymous "></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js " integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF " crossorigin="anonymous "></script>
+
+</body>
+
+</html>
