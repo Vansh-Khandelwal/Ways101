@@ -140,7 +140,7 @@
                         </button>
 
                     </div>
-                    {% else %} {% if user in way.up %}
+                    {% else %} {% if user.username in way.up %}
                     <div class="ms-2">
                         <div class="d-flex flex-column flex-sm-row align-items-center">
                             <i class="text-end fa-solid fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/unupvote/{{user}}/{{way.id}}'"></i>
@@ -151,7 +151,7 @@
                             <span class="text-muted align-self-center text-nowrap" style="font-size: 0.8rem;">{{way.numberofdownvotes}} downvotes</span>
                         </div>
                     </div>
-                    {% elif user in way.down %}
+                    {% elif user.username in way.down %}
                     <div class="ms-2">
                         <div class="d-flex flex-column flex-sm-row align-items-center">
                             <i class="text-end fa-regular fa-thumbs-up fa-2x me-1" onclick="location.href = '/login/upvote/{{user}}/{{way.id}}'"></i>
@@ -246,10 +246,85 @@
                                 </div>
 
                                 <!-- Same for all screen widths -->
-                                <div class="w-auto d-flex flex-column align-items-start justify-content-evenly" id="comment{{comment.id}}">
+                                <div class="w-100 d-flex flex-column align-items-start justify-content-evenly" id="comment{{comment.id}}">
                                     <div class="fw-bold border-bottom border-2 border-warning">{{comment.author}}</div>
                                     <div class="text-break text-wrap">{{comment.comment}}</div>
                                 </div>
+
+                                {% if user.is_staff %}
+                                <!-- Button trigger Delete Comment modal -->
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">Delete Comment</button>
+
+                                <!-- Delete Comment Modal -->
+                                <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="deleteCommentModalLabel">Comment Deletion</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+
+                                            <div class="modal-body">
+                                                <div class="fw-bolder fst-italic mb-3">Are you sure you want to delete:</div>
+                                                <div class="w-100 d-flex ps-4 pe-4 pt-3 pb-3 shadow" style="border-radius: 15px; border: 2px solid black;">
+                                                    <!-- For Extra small screen width -->
+                                                    <div class="d-flex d-sm-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 40%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Small screen width -->
+                                                    <div class="d-none d-sm-flex d-md-none flex-column align-items-start" id="profile{{comment.id}}" style="width: 20%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- For Other screen width -->
+                                                    <div class="d-none d-md-flex flex-column align-items-start" id="profile{{comment.id}}" style="width: 10%;">
+
+                                                        {% if comment.author.profileImg == 1 %}
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 2 %}
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 3 %}
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 4 %}
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="profileimg" class="w-75"> {% elif comment.author.profileImg == 5 %}
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="profileimg" class="w-75"> {% else %}
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="profileimg" class="w-75"> {% endif %}
+
+                                                    </div>
+
+                                                    <!-- Same for all screen widths -->
+                                                    <div class="w-100 d-flex flex-column align-items-start justify-content-evenly" id="comment{{comment.id}}">
+                                                        <div class="fw-bold border-bottom border-2 border-warning">{{comment.author}}</div>
+                                                        <div class="text-break text-wrap">{{comment.comment}}</div>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="button" class="btn btn-danger" onclick="location.href='/login/deleteComment/{{user}}/{{comment.id}}'">Delete Comment</button>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
 
                             </div>
                             {% endif %} {% endfor %}
@@ -261,7 +336,38 @@
 
             </div>
 
-            {% endfor %}
+            {% if user.is_staff %}
+            <!-- Button trigger Delete Way modal -->
+            <button type="button" class="btn btn-danger mb-4 w-50 align-self-center" data-bs-toggle="modal" data-bs-target="#deleteWayModal">Delete Way</button>
+
+            <!-- Delete Way Modal -->
+            <div class="modal fade" id="deleteWayModal" tabindex="-1" aria-labelledby="deleteWayModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="deleteWayModalLabel">Way Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="fw-bolder fst-italic mb-3">Are you sure you want to delete:</div>
+                            <div class="w-100 d-flex flex-column align-items-center justify-content-evenly border border-2 border-success p-3" style="border-radius: 50px;">
+                                <div class="fw-bold text-break text-wrap pb-2">{{way.content}}</div>
+                                <div class="fst-italic">By: {{way.author}}</div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" onclick="location.href='/login/deleteWay/{{user}}/{{way.id}}'">Delete Way</button>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            {% endif %} {% endfor %}
+
         </ul>
 
     </div>

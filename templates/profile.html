@@ -109,17 +109,17 @@
                     </div>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#profileEditLgModal">
                         Edit <i class="fa-solid fa-pen ms-2"></i>
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="profileEditLgModal" tabindex="-1" aria-labelledby="profileEditLgModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                    <h5 class="modal-title text-dark" id="profileEditLgModalLabel">Edit</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
@@ -242,17 +242,17 @@
                     </div>
 
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#profileEditModal">
                         Edit
                     </button>
 
                     <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal fade" id="profileEditModal" tabindex="-1" aria-labelledby="profileEditModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content">
 
                                 <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">Edit</h5>
+                                    <h5 class="modal-title text-dark" id="profileEditModalLabel">Edit</h5>
                                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                 </div>
 
@@ -288,31 +288,38 @@
                                         <!-- Profile image choices -->
                                         <div class="w-100 d-flex justify-content-evenly align-items-center mb-4">
 
-                                            <div class="d-flex w-50 justify-content-evenly align-items-center">
-                                                <div class="d-flex flex-column w-25 me-2">
-                                                    <img src="{% static '/1x/Asset1.png' %}" alt="Profile Image 1" class="mb-2">
-                                                    <input type="radio" name="profileImg" id="profile1" value="1" {% if user.profileImg is 1 %} checked {% endif %} />
+                                            <div class="d-flex flex-column w-100 justify-content-evenly align-items-center">
+
+                                                <div class="d-flex w-100 justify-content-evenly align-items-center mb-2">
+                                                    <div class="d-flex flex-column w-25 me-2">
+                                                        <img src="{% static '/1x/Asset1.png' %}" alt="Profile Image 1" class="mb-2">
+                                                        <input type="radio" name="profileImg" id="profile1" value="1" class="align-self-center" {% if user.profileImg is 1 %} checked {% endif %} />
+                                                    </div>
+                                                    <div class="d-flex flex-column w-25 me-2">
+                                                        <img src="{% static '/1x/Asset2.png' %}" alt="Profile Image 2" class="mb-2">
+                                                        <input type="radio" name="profileImg" id="profile2" value="2" class="align-self-center" {% if user.profileImg is 2 %} checked {% endif %} />
+                                                    </div>
+                                                    <div class="d-flex flex-column w-25 me-2">
+                                                        <img src="{% static '/1x/Asset3.png' %}" alt="Profile Image 3" class="mb-2">
+                                                        <input type="radio" name="profileImg" id="profile3" value="3" class="align-self-center" {% if user.profileImg is 3 %} checked {% endif %} />
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex flex-column w-25 me-2">
-                                                    <img src="{% static '/1x/Asset2.png' %}" alt="Profile Image 2" class="mb-2">
-                                                    <input type="radio" name="profileImg" id="profile2" value="2" {% if user.profileImg is 2 %} checked {% endif %} />
+
+                                                <div class="d-flex w-100 justify-content-evenly align-items-center">
+                                                    <div class="d-flex flex-column w-25 me-2">
+                                                        <img src="{% static '/1x/Asset4.png' %}" alt="Profile Image 4" class="mb-2">
+                                                        <input type="radio" name="profileImg" id="profile4" value="4" class="align-self-center" {% if user.profileImg is 4 %} checked {% endif %} />
+                                                    </div>
+                                                    <div class="d-flex flex-column w-25 me-2">
+                                                        <img src="{% static '/1x/Asset5.png' %}" alt="Profile Image 5" class="mb-2">
+                                                        <input type="radio" name="profileImg" id="profile5" value="5" class="align-self-center" {% if user.profileImg is 5 %} checked {% endif %} />
+                                                    </div>
+                                                    <div class="d-flex flex-column w-25 me-2">
+                                                        <img src="{% static '/1x/Asset6.png' %}" alt="Profile Image 6" class="mb-2">
+                                                        <input type="radio" name="profileImg" id="profile6" value="6" class="align-self-center" {% if user.profileImg is 6 %} checked {% endif %}/>
+                                                    </div>
                                                 </div>
-                                                <div class="d-flex flex-column w-25 me-2">
-                                                    <img src="{% static '/1x/Asset3.png' %}" alt="Profile Image 3" class="mb-2">
-                                                    <input type="radio" name="profileImg" id="profile3" value="3" {% if user.profileImg is 3 %} checked {% endif %} />
-                                                </div>
-                                                <div class="d-flex flex-column w-25 me-2">
-                                                    <img src="{% static '/1x/Asset4.png' %}" alt="Profile Image 4" class="mb-2">
-                                                    <input type="radio" name="profileImg" id="profile4" value="4" {% if user.profileImg is 4 %} checked {% endif %} />
-                                                </div>
-                                                <div class="d-flex flex-column w-25 me-2">
-                                                    <img src="{% static '/1x/Asset5.png' %}" alt="Profile Image 5" class="mb-2">
-                                                    <input type="radio" name="profileImg" id="profile5" value="5" {% if user.profileImg is 5 %} checked {% endif %} />
-                                                </div>
-                                                <div class="d-flex flex-column w-25 me-2">
-                                                    <img src="{% static '/1x/Asset6.png' %}" alt="Profile Image 6" class="mb-2">
-                                                    <input type="radio" name="profileImg" id="profile6" value="6" {% if user.profileImg is 6 %} checked {% endif %}/>
-                                                </div>
+
                                             </div>
 
                                         </div>

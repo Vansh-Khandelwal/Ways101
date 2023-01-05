@@ -4,6 +4,7 @@ from django.contrib.auth import authenticate
 from .models import Way, User, Comment
 from django.http import HttpResponseRedirect, HttpRequest
 
+
 # Create your views here.
 
 def base1(req):
@@ -15,6 +16,7 @@ def base1(req):
 
 def base2(req, user):
 
+    user = req.user
     WayList = Way.objects.all().order_by("date")
     comments = Comment.objects.all().order_by("date")
     return render(req, '../templates/base.html', {"way_list": WayList, "user": user, "comments" : comments})
@@ -146,5 +148,21 @@ def addcomment(req, user, wayId):
     way = Way.objects.get(pk= wayId)
 
     new_comment = Comment.objects.create(author = author, comment = comment, way = way, date = date)
+
+    return HttpResponseRedirect(f'/login/{user}')
+
+def deleteWay(req, user, wayId):
+
+    if req.user.is_staff:
+        way = Way.objects.get(pk = wayId)
+        way.delete()
+
+    return HttpResponseRedirect(f'/login/{user}')
+
+def deleteComment(req, user, commentId):
+
+    if req.user.is_staff:
+        comment = Comment.objects.get(pk=commentId)
+        comment.delete()
 
     return HttpResponseRedirect(f'/login/{user}')

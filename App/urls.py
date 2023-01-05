@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.urls import path, include
-from .views import base1, addWayUser, base2, upvote, unupvote, downvote, undownvote, profile, addcomment
+from .views import base1, addWayUser, base2, upvote, unupvote, downvote, undownvote, profile, addcomment, deleteWay, deleteComment
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 urlpatterns = [
@@ -17,6 +17,9 @@ urlpatterns = [
     path('login/undownvote/<user>/<int:wayId>', undownvote, name="undisliked"),
 
     path('login/comment/<user>/<int:wayId>', addcomment, name="addcomment"),
+
+    path('login/deleteWay/<user>/<int:wayId>', deleteWay, name="deleteWay"),
+    path('login/deleteComment/<user>/<int:commentId>', deleteComment, name="deleteComment")
 ]
 
 urlpatterns += staticfiles_urlpatterns()
