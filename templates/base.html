@@ -251,12 +251,12 @@
                                     <div class="text-break text-wrap">{{comment.comment}}</div>
                                 </div>
 
-                                {% if user.is_staff %}
+                                {% if user.is_staff or comment.author == user %}
                                 <!-- Button trigger Delete Comment modal -->
-                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCommentModal">Delete Comment</button>
+                                <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#deleteCommentModal{{comment.id}}">Delete Comment</button>
 
                                 <!-- Delete Comment Modal -->
-                                <div class="modal fade" id="deleteCommentModal" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="deleteCommentModal{{comment.id}}" tabindex="-1" aria-labelledby="deleteCommentModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
 
@@ -336,12 +336,12 @@
 
             </div>
 
-            {% if user.is_staff %}
+            {% if user.is_staff or user == way.author %}
             <!-- Button trigger Delete Way modal -->
-            <button type="button" class="btn btn-danger mb-4 w-50 align-self-center" data-bs-toggle="modal" data-bs-target="#deleteWayModal">Delete Way</button>
+            <button type="button" class="btn btn-danger mb-4 w-50 align-self-center" data-bs-toggle="modal" data-bs-target="#deleteWayModal{{way.id}}">Delete Way</button>
 
             <!-- Delete Way Modal -->
-            <div class="modal fade" id="deleteWayModal" tabindex="-1" aria-labelledby="deleteWayModalLabel" aria-hidden="true">
+            <div class="modal fade" id="deleteWayModal{{way.id}}" tabindex="-1" aria-labelledby="deleteWayModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
 
