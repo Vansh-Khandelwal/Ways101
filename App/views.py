@@ -173,4 +173,11 @@ def deleteComment(req, user, commentId):
         comment = Comment.objects.get(pk=commentId)
         comment.delete()
 
+    else:
+
+        comment = Comment.objects.get(pk=commentId)
+
+        if req.user == comment.author:
+            comment.delete()
+
     return HttpResponseRedirect(f'/login/{user}')
