@@ -157,6 +157,14 @@ def deleteWay(req, user, wayId):
         way = Way.objects.get(pk = wayId)
         way.delete()
 
+    else:
+        
+        way = Way.objects.get(pk=wayId)
+
+        if req.user == way.author:
+            way.delete()
+
+
     return HttpResponseRedirect(f'/login/{user}')
 
 def deleteComment(req, user, commentId):
