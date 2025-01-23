@@ -1,8 +1,8 @@
 # Ways101
 
-*This is ways 101 website, a community dedicated to exploring and sharing different ways to approach a specific task. Whether you're a seasoned expert or just starting out, we believe that there is always room to learn and grow. That's why we've created this platform for individuals from all backgrounds and levels of experience to come together and exchange their unique perspectives and techniques. <br />
+*This is ways 101 website, a community dedicated to exploring and sharing different ways to approach a specific task. Whether you're a seasoned expert or just starting out, we believe that there is always room to learn and grow. That's why we've created this platform for individuals from all backgrounds and levels of experience to come together and exchange their unique perspectives and techniques.* <br />
 
-It's goal is to create a collaborative and inclusive space where members can freely share their insights, ask questions, and engage in meaningful discussions.*
+*It's goal is to create a collaborative and inclusive space where members can freely share their insights, ask questions, and engage in meaningful discussions.*
 
 ### Tech Stack Used:
 HTML <br />
