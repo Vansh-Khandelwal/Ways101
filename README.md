@@ -1,10 +1,31 @@
 # Ways101
 
-*This is ways 101 website made in django, bootstrap and HTML.*
+*This is ways 101 website, a community dedicated to exploring and sharing different ways to approach a specific task. Whether you're a seasoned expert or just starting out, we believe that there is always room to learn and grow. That's why we've created this platform for individuals from all backgrounds and levels of experience to come together and exchange their unique perspectives and techniques. <br />
 
-*It is loaded with features such as LogIn, SignUp, Profile Edit, create, read and delete operations with the ways added by the users.*
+It's goal is to create a collaborative and inclusive space where members can freely share their insights, ask questions, and engage in meaningful discussions.*
 
-**website link:** https://ways101.pythonanywhere.com/
+### Tech Stack Used:
+HTML <br />
+CSS, Boostrap <br />
+Django <br />
+
+### Hosted Links:
+Website: https://ways101.pythonanywhere.com/
+
+### Features:
+-> Dynamic Website
+-> Responsive UI
+-> Pages: Login/SignUp, Home, User Settings
+-> Create, Read and Update User Profile
+-> Create, Read and Delete Blogs and Comments
+
+### Improvments:
+-> User can start there own page on a topic so CRUD for own discussion
+
+### Bugs:
+-> CSRF Error on double clicking sign in button in mobile
+
+## Pages:
 
 **Login Page**
 
